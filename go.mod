@@ -1,4 +1,4 @@
-module github.com/nmiculinic/wg-quick-go
+module go.xsfx.dev/wg-quicker
 
 go 1.12
 

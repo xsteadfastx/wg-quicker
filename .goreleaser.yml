@@ -1,0 +1,45 @@
+---
+project_name: wg-quicker
+builds:
+  - main: ./cmd/wg-quicker/main.go
+    env:
+      - CGO_ENABLED=0
+    goarch:
+      - amd64
+      - arm
+      - arm64
+      - 386
+    goarm:
+      - 5
+    goos:
+      - linux
+    ldflags:
+      - "-s"
+      - "-w"
+      - "-extldflags '-static'"
+    hooks:
+      pre:
+        - make clean
+        - make generate GOARCH={{.Arch}}
+archives:
+  - replacements:
+      darwin: macos
+checksum:
+  name_template: "checksums.txt"
+snapshot:
+  name_template: "{{ .Tag }}-next"
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+nfpms:
+  - formats:
+      - apk
+      - deb
+      - rpm
+    replacements:
+      386: i386
+    homepage: https://git.xsfx.dev/xsteadfastx/wg-quicker
+    maintainer: Marvin Preuss <marvin@xsteadfastx.org>

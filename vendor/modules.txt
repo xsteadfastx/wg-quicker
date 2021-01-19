@@ -1,0 +1,39 @@
+# github.com/davecgh/go-spew v1.1.1
+github.com/davecgh/go-spew/spew
+# github.com/konsorten/go-windows-terminal-sequences v1.0.1
+github.com/konsorten/go-windows-terminal-sequences
+# github.com/mdlayher/genetlink v0.0.0-20191008151445-a2cadeac9a63
+github.com/mdlayher/genetlink
+# github.com/mdlayher/netlink v0.0.0-20191009155606-de872b0d824b
+github.com/mdlayher/netlink
+github.com/mdlayher/netlink/nlenc
+# github.com/pmezard/go-difflib v1.0.0
+github.com/pmezard/go-difflib/difflib
+# github.com/sirupsen/logrus v1.4.0
+github.com/sirupsen/logrus
+# github.com/stretchr/testify v1.3.0
+github.com/stretchr/testify/assert
+# github.com/vishvananda/netlink v1.0.0
+github.com/vishvananda/netlink
+github.com/vishvananda/netlink/nl
+# github.com/vishvananda/netns v0.0.0-20180720170159-13995c7128cc
+github.com/vishvananda/netns
+# golang.org/x/crypto v0.0.0-20191028145041-f83a4685e152
+golang.org/x/crypto/curve25519
+golang.org/x/crypto/ssh/terminal
+# golang.org/x/net v0.0.0-20191028085509-fe3aa8a45271
+golang.org/x/net/bpf
+# golang.org/x/sys v0.0.0-20191028164358-195ce5e7f934
+golang.org/x/sys/unix
+golang.org/x/sys/windows
+# golang.zx2c4.com/wireguard v0.0.20191012
+golang.zx2c4.com/wireguard/ipc/winpipe
+# golang.zx2c4.com/wireguard/wgctrl v0.0.0-20191028205011-23406de29c08
+golang.zx2c4.com/wireguard/wgctrl
+golang.zx2c4.com/wireguard/wgctrl/internal/wginternal
+golang.zx2c4.com/wireguard/wgctrl/internal/wglinux
+golang.zx2c4.com/wireguard/wgctrl/internal/wglinux/internal/wgh
+golang.zx2c4.com/wireguard/wgctrl/internal/wgopenbsd
+golang.zx2c4.com/wireguard/wgctrl/internal/wgopenbsd/internal/wgh
+golang.zx2c4.com/wireguard/wgctrl/internal/wguser
+golang.zx2c4.com/wireguard/wgctrl/wgtypes
