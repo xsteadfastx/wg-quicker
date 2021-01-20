@@ -1,0 +1,64 @@
+---
+kind: pipeline
+name: default
+
+steps:
+  - name: fetch
+    image: docker:git
+    commands:
+      - git fetch --tags
+
+  - name: lint
+    image: golangci/golangci-lint:latest
+    commands:
+      - make lint
+
+  - name: test
+    image: golang:latest
+    commands:
+      - make lint
+
+  - name: build
+    image: goreleaser/goreleaser:latest
+    volumes:
+      - name: dockersock
+        path: /var/run
+    environment:
+    commands:
+      - make build
+    when:
+      event:
+        exclude:
+          - tag
+    depends_on:
+      - lint
+      - test
+
+  - name: release
+    image: goreleaser/goreleaser:latest
+    volumes:
+      - name: dockersock
+        path: /var/run
+    environment:
+      GITEA_TOKEN:
+        from_secret: gitea_token
+    commands:
+      - make release
+    when:
+      event:
+        - tag
+    depends_on:
+      - lint
+      - test
+
+services:
+  - name: docker
+    image: docker:dind
+    privileged: true
+    volumes:
+      - name: dockersock
+        path: /var/run
+
+volumes:
+  - name: dockersock
+    temp: {}

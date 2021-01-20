@@ -202,10 +202,10 @@ func SyncLink(cfg *Config, iface string, log logrus.FieldLogger) (netlink.Link, 
 			LinkType: "wireguard",
 		}
 		if err := netlink.LinkAdd(wgLink); err != nil {
-			log.WithError(err).Errorf("cannot create link: %w", err)
+			log.WithError(err).Errorf("cannot create link: %s", err.Error())
 			log.Info("trying to use embedded wireguard-go...")
 			if err := wgGo(iface); err != nil {
-				log.WithError(err).Errorf("cannot create link through wireguard-go: %w", err)
+				log.WithError(err).Errorf("cannot create link through wireguard-go: %s", err.Error())
 				return nil, fmt.Errorf("cannot create link")
 			}
 		}
