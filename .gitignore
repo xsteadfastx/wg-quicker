@@ -83,3 +83,4 @@ fabric.properties
 wg-quicker
 assets/*
 dist/*
+bin/*

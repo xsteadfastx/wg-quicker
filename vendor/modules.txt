@@ -1,5 +1,23 @@
 # github.com/davecgh/go-spew v1.1.1
 github.com/davecgh/go-spew/spew
+# github.com/getlantern/byteexec v0.0.0-20170405023437-4cfb26ec74f4
+github.com/getlantern/byteexec
+# github.com/getlantern/context v0.0.0-20190109183933-c447772a6520
+github.com/getlantern/context
+# github.com/getlantern/errors v1.0.1
+github.com/getlantern/errors
+# github.com/getlantern/filepersist v0.0.0-20160317154340-c5f0cd24e799
+github.com/getlantern/filepersist
+# github.com/getlantern/golog v0.0.0-20201105130739-9586b8bde3a9
+github.com/getlantern/golog
+# github.com/getlantern/hex v0.0.0-20190417191902-c6586a6fe0b7
+github.com/getlantern/hex
+# github.com/getlantern/hidden v0.0.0-20190325191715-f02dbb02be55
+github.com/getlantern/hidden
+# github.com/getlantern/ops v0.0.0-20190325191751-d70cb0d6f85f
+github.com/getlantern/ops
+# github.com/go-stack/stack v1.8.0
+github.com/go-stack/stack
 # github.com/konsorten/go-windows-terminal-sequences v1.0.1
 github.com/konsorten/go-windows-terminal-sequences
 # github.com/mdlayher/genetlink v0.0.0-20191008151445-a2cadeac9a63
@@ -7,6 +25,8 @@ github.com/mdlayher/genetlink
 # github.com/mdlayher/netlink v0.0.0-20191009155606-de872b0d824b
 github.com/mdlayher/netlink
 github.com/mdlayher/netlink/nlenc
+# github.com/oxtoacart/bpool v0.0.0-20190530202638-03653db5a59c
+github.com/oxtoacart/bpool
 # github.com/pmezard/go-difflib v1.0.0
 github.com/pmezard/go-difflib/difflib
 # github.com/sirupsen/logrus v1.4.0

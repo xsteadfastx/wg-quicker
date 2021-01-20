@@ -8,12 +8,33 @@ import (
 	"os/exec"
 	"strings"
 	"syscall"
+	"time"
 
+	"github.com/getlantern/byteexec"
 	"github.com/sirupsen/logrus"
 	"github.com/vishvananda/netlink"
+	"go.xsfx.dev/wg-quicker/assets"
 	"golang.org/x/sys/unix"
 	"golang.zx2c4.com/wireguard/wgctrl"
 )
+
+// wgGo runs a embedded wireguard-go for interface creation.
+func wgGo(iface string) error {
+	wgob, err := assets.Asset("bin/wireguard-go")
+	if err != nil {
+		return fmt.Errorf("cannot get wireguard-go: %w", err)
+	}
+
+	wgo, err := byteexec.New(wgob, "wireguard-go")
+	if err != nil {
+		return fmt.Errorf("unable to build byteexec for wireguard-go: %w", err)
+	}
+
+	cmd := wgo.Command(iface)
+	cmd.Start()
+
+	return nil
+}
 
 // Up sets and configures the wg interface. Mostly equivalent to `wg-quick up iface`
 func Up(cfg *Config, iface string, logger logrus.FieldLogger) error {
@@ -172,6 +193,7 @@ func SyncLink(cfg *Config, iface string, log logrus.FieldLogger) (netlink.Link, 
 			return nil, err
 		}
 		log.Info("link not found, creating")
+
 		wgLink := &netlink.GenericLink{
 			LinkAttrs: netlink.LinkAttrs{
 				Name: iface,
@@ -180,11 +202,16 @@ func SyncLink(cfg *Config, iface string, log logrus.FieldLogger) (netlink.Link, 
 			LinkType: "wireguard",
 		}
 		if err := netlink.LinkAdd(wgLink); err != nil {
-			log.WithError(err).Error("cannot create link")
-			return nil, err
+			log.WithError(err).Errorf("cannot create link: %w", err)
+			log.Info("trying to use embedded wireguard-go...")
+			if err := wgGo(iface); err != nil {
+				log.WithError(err).Errorf("cannot create link through wireguard-go: %w", err)
+				return nil, fmt.Errorf("cannot create link")
+			}
 		}
 
-		// TODO: ADD WIREGUARD-GO HERE!!!1111!!
+		// Needs some sleeping to wait for interface creating.
+		time.Sleep(1 * time.Second)
 
 		link, err = netlink.LinkByName(iface)
 		if err != nil {

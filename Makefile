@@ -16,17 +16,19 @@ all: clean wg-quicker
 
 .PHONY: clean
 clean:
-	# rm wg-quicker || true
+	rm wg-quicker || true
 	rm -rf assets || true
-	rm -rf /tmp/wireguard-go || true
+	rm -rf bin || true
 
 .PHONY: wireguard-go
 wireguard-go: clean
+	mkdir bin
 	cd /tmp; \
 		git clone $(WIREGUARD-GO_REPO); \
 		cd wireguard-go; \
 		git checkout -b $(WIREGUARD-GO_VERSION) $(WIREGUARD-GO_VERSION); \
 		GOOS=linux GOARCH=$(GOARCH) $(GOARMLINE) $(GO) build -v -o wireguard-go $(GOFLAGS) .
+	mv /tmp/wireguard-go/wireguard-go bin/wireguard-go
 
 .PHONY: generate
 generate: wireguard-go
