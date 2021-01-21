@@ -52,4 +52,4 @@ test:
 
 .PHONY: lint
 lint:
-	golangci-lint run --enable-all --disable gomnd --disable godox --timeout 5m
+	golangci-lint run --enable-all --disable gomnd --disable godox --disable exhaustivestruct --timeout 5m

@@ -1,3 +1,4 @@
+// nolint: scopelint, gochecknoglobals, paralleltest, testpackage
 package wgquick
 
 import (
@@ -54,6 +55,7 @@ PersistentKeepalive = 25
 
 func TestExampleConfig(t *testing.T) {
 	c := &Config{}
+
 	for name, cfg := range testConfigs {
 		t.Run(name, func(t *testing.T) {
 			err := c.UnmarshalText([]byte(cfg))
