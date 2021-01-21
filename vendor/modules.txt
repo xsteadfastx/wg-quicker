@@ -18,6 +18,8 @@ github.com/getlantern/hidden
 github.com/getlantern/ops
 # github.com/go-stack/stack v1.8.0
 github.com/go-stack/stack
+# github.com/inconshreveable/mousetrap v1.0.0
+github.com/inconshreveable/mousetrap
 # github.com/konsorten/go-windows-terminal-sequences v1.0.1
 github.com/konsorten/go-windows-terminal-sequences
 # github.com/mdlayher/genetlink v0.0.0-20191008151445-a2cadeac9a63
@@ -31,7 +33,11 @@ github.com/oxtoacart/bpool
 github.com/pmezard/go-difflib/difflib
 # github.com/sirupsen/logrus v1.4.0
 github.com/sirupsen/logrus
-# github.com/stretchr/testify v1.3.0
+# github.com/spf13/cobra v1.1.1
+github.com/spf13/cobra
+# github.com/spf13/pflag v1.0.5
+github.com/spf13/pflag
+# github.com/stretchr/testify v1.5.1
 github.com/stretchr/testify/assert
 # github.com/vishvananda/netlink v1.0.0
 github.com/vishvananda/netlink
@@ -43,7 +49,7 @@ golang.org/x/crypto/curve25519
 golang.org/x/crypto/ssh/terminal
 # golang.org/x/net v0.0.0-20191028085509-fe3aa8a45271
 golang.org/x/net/bpf
-# golang.org/x/sys v0.0.0-20191028164358-195ce5e7f934
+# golang.org/x/sys v0.0.0-20200302150141-5c8b2ff67527
 golang.org/x/sys/unix
 golang.org/x/sys/windows
 # golang.zx2c4.com/wireguard v0.0.20191012
@@ -57,3 +63,5 @@ golang.zx2c4.com/wireguard/wgctrl/internal/wgopenbsd
 golang.zx2c4.com/wireguard/wgctrl/internal/wgopenbsd/internal/wgh
 golang.zx2c4.com/wireguard/wgctrl/internal/wguser
 golang.zx2c4.com/wireguard/wgctrl/wgtypes
+# gopkg.in/yaml.v2 v2.2.8
+gopkg.in/yaml.v2

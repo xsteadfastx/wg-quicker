@@ -3,8 +3,7 @@ project_name: wg-quicker
 gitea_urls:
   api: https://git.xsfx.dev/api/v1/
 builds:
-  - main: ./cmd/wg-quicker/main.go
-    env:
+  - env:
       - CGO_ENABLED=0
     goarch:
       - amd64
