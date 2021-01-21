@@ -1,3 +1,4 @@
+// nolint: errorlint
 package wgquick
 
 import (
@@ -48,7 +49,7 @@ func Up(cfg *Config, iface string, logger logrus.FieldLogger) error {
 		return os.ErrExist
 	}
 
-	if errors.As(err, &netlink.LinkNotFoundError{}) {
+	if _, ok := err.(netlink.LinkNotFoundError); !ok {
 		return fmt.Errorf("%w", err)
 	}
 
@@ -226,7 +227,7 @@ func SyncLink(cfg *Config, iface string, log logrus.FieldLogger) (netlink.Link, 
 	link, err := netlink.LinkByName(iface)
 	// nolint: nestif
 	if err != nil {
-		if errors.As(err, &netlink.LinkNotFoundError{}) {
+		if _, ok := err.(netlink.LinkNotFoundError); !ok {
 			log.WithError(err).Error("cannot read link")
 
 			return nil, fmt.Errorf("%w", err)
