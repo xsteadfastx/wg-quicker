@@ -39,10 +39,6 @@ steps:
 
   - name: build
     image: goreleaser/goreleaser:latest
-    volumes:
-      - name: dockersock
-        path: /var/run
-    environment:
     commands:
       - (cd /tmp; go get -u github.com/go-bindata/go-bindata/...)
       - make build
@@ -55,9 +51,6 @@ steps:
 
   - name: release
     image: goreleaser/goreleaser:latest
-    volumes:
-      - name: dockersock
-        path: /var/run
     environment:
       GITEA_TOKEN:
         from_secret: gitea_token
@@ -69,15 +62,3 @@ steps:
         - tag
     depends_on:
       - clean
-
-services:
-  - name: docker
-    image: docker:dind
-    privileged: true
-    volumes:
-      - name: dockersock
-        path: /var/run
-
-volumes:
-  - name: dockersock
-    temp: {}

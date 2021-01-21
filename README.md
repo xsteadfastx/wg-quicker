@@ -1,8 +1,29 @@
-# wg-quicker
+<p align="center">
+        <img src="./logo.png" width="587" alt="logo">
+        <p align="center"><b>wg-quick like library with batteries included</b></p>
+</p>
 
-[![Build Status](https://gitlab.com/neven-miculinic/wg-quick-go/badges/master/pipeline.svg)](https://gitlab.com/neven-miculinic/wg-quick-go/pipelines) [![GoDoc](https://godoc.org/github.com/nmiculinic/wireguardctrl?status.svg)](https://godoc.org/github.com/nmiculinic/wg-quick-go) [![Go Report Card](https://goreportcard.com/badge/github.com/nmiculinic/wg-quick-go)](https://goreportcard.com/report/github.com/nmiculinic/wg-quick-go)
+---
 
-wg-quick like library in go for embedding
+This is a friendly fork of [wg-quick-go](https://github.com/nmiculinic/wg-quick-go). It contains everything needed to get a system into a wireguard vpn network. If there is no wireguard kernel modul available, it will spin up the embedded wireguard-go to create a wireguard interface.
+
+# Badges
+
+[![Build Status](https://ci.xsfx.dev/api/badges/xsteadfastx/wg-quicker/status.svg)](https://ci.xsfx.dev/xsteadfastx/wg-quicker)
+[![Go Reference](https://pkg.go.dev/badge/go.xsfx.dev/wg-quicker.svg)](https://pkg.go.dev/go.xsfx.dev/wg-quicker)
+[![Go Report Card](https://goreportcard.com/badge/go.xsfx.dev/wg-quicker)](https://goreportcard.com/report/go.xsfx.dev/wg-quicker)
+
+# Installation
+
+## Prebuild packages
+
+Get these on release [page](https://git.xsfx.dev/xsteadfastx/wg-quicker/releases).
+
+## Compile it for yourself
+
+- `git clone https://git.xsfx.dev/xsteadfastx/wg-quicker.git`
+- `cd wg-quicker`
+- `make build`
 
 # Roadmap
 
@@ -20,6 +41,7 @@ wg-quick like library in go for embedding
 - [x] MarshallText
 - [x] UnmarshallText
 - [x] Minimal test
+- [x] Embedded [wireguard-go](https://git.zx2c4.com/wireguard-go/about/)
 - [ ] Integration tests ((TODO; have some virtual machines/kvm and wreck havoc :) ))
 
 # Caveats
