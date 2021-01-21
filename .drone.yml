@@ -8,15 +8,34 @@ steps:
     commands:
       - git fetch --tags
 
+  - name: go-bindata
+    image: golang:latest
+    commands:
+      - (cd /tmp; go get -u github.com/go-bindata/go-bindata/...)
+      - go-bindata -pkg assets -o assets/bindata.go -nomemcopy /bin/true
+
   - name: lint
     image: golangci/golangci-lint:latest
     commands:
       - make lint
+    depends_on:
+      - go-bindata
 
   - name: test
     image: golang:latest
     commands:
-      - make lint
+      - make test
+    depends_on:
+      - go-bindata
+
+  - name: clean
+    image: golang:latest
+    commands:
+      - make clean
+      - git checkout -- .
+    depends_on:
+      - lint
+      - test
 
   - name: build
     image: goreleaser/goreleaser:latest
@@ -25,14 +44,14 @@ steps:
         path: /var/run
     environment:
     commands:
+      - (cd /tmp; go get -u github.com/go-bindata/go-bindata/...)
       - make build
     when:
       event:
         exclude:
           - tag
     depends_on:
-      - lint
-      - test
+      - clean
 
   - name: release
     image: goreleaser/goreleaser:latest
@@ -43,13 +62,13 @@ steps:
       GITEA_TOKEN:
         from_secret: gitea_token
     commands:
-      - make release
+      - (cd /tmp; go get -u github.com/go-bindata/go-bindata/...)
+      - goreleaser release --rm-dist --parallelism=1
     when:
       event:
         - tag
     depends_on:
-      - lint
-      - test
+      - clean
 
 services:
   - name: docker
