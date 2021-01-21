@@ -39,7 +39,7 @@ var upCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		c, log := loadConfig(args[0])
-		if err := wgquick.Up(c, iface, log); err != nil {
+		if err := wgquick.Up(c, iface, wgo, log); err != nil {
 			logrus.WithError(err).Errorln("cannot up interface")
 		}
 	},
@@ -63,7 +63,7 @@ var syncCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		c, log := loadConfig(args[0])
-		if err := wgquick.Sync(c, iface, log); err != nil {
+		if err := wgquick.Sync(c, iface, wgo, log); err != nil {
 			logrus.WithError(err).Errorln("cannot sync interface")
 		}
 	},
