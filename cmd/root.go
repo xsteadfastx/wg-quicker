@@ -49,7 +49,7 @@ var versionCmd = &cobra.Command{
 }
 
 var upCmd = &cobra.Command{
-	Use:   "up [ config_file | interface ]",
+	Use:   "up [config_file|interface]",
 	Short: "Bringing interface up",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -61,7 +61,7 @@ var upCmd = &cobra.Command{
 }
 
 var downCmd = &cobra.Command{
-	Use:   "down [ config_file | interface ]",
+	Use:   "down [config_file|interface]",
 	Short: "Bringing interface down",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
@@ -73,13 +73,29 @@ var downCmd = &cobra.Command{
 }
 
 var syncCmd = &cobra.Command{
-	Use:   "sync [ config_file | interface ]",
+	Use:   "sync [config_file|interface]",
 	Short: "Sync interface",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		c, log := loadConfig(args[0])
 		if err := wgquick.Sync(c, iface, wgo, log); err != nil {
 			logrus.WithError(err).Errorln("cannot sync interface")
+		}
+	},
+}
+
+var showCmd = &cobra.Command{
+	Use:   "show [interface]",
+	Short: "Show current configuration",
+	Args:  cobra.MaximumNArgs(1),
+	Run: func(cmd *cobra.Command, args []string) {
+		device := ""
+		if len(args) == 1 {
+			device = args[0]
+		}
+
+		if err := wgquick.Show(device); err != nil {
+			logrus.WithError(err).Errorln("cannot show configuration")
 		}
 	},
 }
@@ -133,6 +149,7 @@ func init() {
 	rootCmd.AddCommand(downCmd)
 	rootCmd.AddCommand(syncCmd)
 	rootCmd.AddCommand(versionCmd)
+	rootCmd.AddCommand(showCmd)
 }
 
 func Execute() {
