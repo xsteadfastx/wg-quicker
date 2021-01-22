@@ -3,13 +3,65 @@ project_name: wg-quicker
 gitea_urls:
   api: https://git.xsfx.dev/api/v1/
 builds:
-  - env:
+  - id: amd64
+    env:
       - CGO_ENABLED=0
     goarch:
       - amd64
-      - arm
+    goos:
+      - linux
+    ldflags:
+      - "-s"
+      - "-w"
+      - "-extldflags '-static'"
+      - "-X go.xsfx.dev/wg-quicker/cmd.version={{.Version}}"
+      - "-X go.xsfx.dev/wg-quicker/cmd.commit={{.ShortCommit}}"
+      - "-X go.xsfx.dev/wg-quicker/cmd.date={{.Date}}"
+    hooks:
+      pre:
+        - make clean
+        - make generate GOARCH={{.Arch}}
+  - id: arm64
+    env:
+      - CGO_ENABLED=0
+    goarch:
       - arm64
+    goos:
+      - linux
+    ldflags:
+      - "-s"
+      - "-w"
+      - "-extldflags '-static'"
+      - "-X go.xsfx.dev/wg-quicker/cmd.version={{.Version}}"
+      - "-X go.xsfx.dev/wg-quicker/cmd.commit={{.ShortCommit}}"
+      - "-X go.xsfx.dev/wg-quicker/cmd.date={{.Date}}"
+    hooks:
+      pre:
+        - make clean
+        - make generate GOARCH={{.Arch}}
+  - id: 386
+    env:
+      - CGO_ENABLED=0
+    goarch:
       - 386
+    goos:
+      - linux
+    ldflags:
+      - "-s"
+      - "-w"
+      - "-extldflags '-static'"
+      - "-X go.xsfx.dev/wg-quicker/cmd.version={{.Version}}"
+      - "-X go.xsfx.dev/wg-quicker/cmd.commit={{.ShortCommit}}"
+      - "-X go.xsfx.dev/wg-quicker/cmd.date={{.Date}}"
+    hooks:
+      pre:
+        - make clean
+        - make generate GOARCH={{.Arch}}
+  - id: arm-5
+    env:
+      - CGO_ENABLED=0
+    goarch:
+      - arm
     goarm:
       - 5
     goos:
@@ -24,7 +76,47 @@ builds:
     hooks:
       pre:
         - make clean
-        - make generate GOARCH={{.Arch}}
+        - make generate GOARCH={{.Arch}} GOARM=5
+  - id: arm-6
+    env:
+      - CGO_ENABLED=0
+    goarch:
+      - arm
+    goarm:
+      - 6
+    goos:
+      - linux
+    ldflags:
+      - "-s"
+      - "-w"
+      - "-extldflags '-static'"
+      - "-X go.xsfx.dev/wg-quicker/cmd.version={{.Version}}"
+      - "-X go.xsfx.dev/wg-quicker/cmd.commit={{.ShortCommit}}"
+      - "-X go.xsfx.dev/wg-quicker/cmd.date={{.Date}}"
+    hooks:
+      pre:
+        - make clean
+        - make generate GOARCH={{.Arch}} GOARM=6
+  - id: arm-7
+    env:
+      - CGO_ENABLED=0
+    goarch:
+      - arm
+    goarm:
+      - 7
+    goos:
+      - linux
+    ldflags:
+      - "-s"
+      - "-w"
+      - "-extldflags '-static'"
+      - "-X go.xsfx.dev/wg-quicker/cmd.version={{.Version}}"
+      - "-X go.xsfx.dev/wg-quicker/cmd.commit={{.ShortCommit}}"
+      - "-X go.xsfx.dev/wg-quicker/cmd.date={{.Date}}"
+    hooks:
+      pre:
+        - make clean
+        - make generate GOARCH={{.Arch}} GOARM=7
 archives:
   - replacements:
       darwin: macos

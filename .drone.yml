@@ -3,10 +3,11 @@ kind: pipeline
 name: default
 
 steps:
-  - name: fetch
-    image: docker:git
+  - name: git
+    image: alpine/git
     commands:
       - git fetch --tags
+      - git submodule update --recursive --remote
 
   - name: go-bindata
     image: golang:latest

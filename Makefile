@@ -1,5 +1,3 @@
-WIREGUARD-GO_VERSION ?= v0.0.20201118
-WIREGUARD-GO_REPO ?= https://git.zx2c4.com/wireguard-go
 export GO111MODULE := on
 GO ?= go
 GOFLAGS ?= -ldflags '-s -w -extldflags "-static"'
@@ -18,17 +16,12 @@ all: clean wg-quicker
 clean:
 	rm wg-quicker || true
 	rm -rf assets || true
-	rm -rf bin || true
+	rm third_party/wireguard-go/wireguard-go || true
 
 .PHONY: wireguard-go
 wireguard-go: clean
-	mkdir bin
-	cd /tmp; \
-		git clone $(WIREGUARD-GO_REPO); \
-		cd wireguard-go; \
-		git checkout -b $(WIREGUARD-GO_VERSION) $(WIREGUARD-GO_VERSION); \
+	cd third_party/wireguard-go; \
 		GOOS=linux GOARCH=$(GOARCH) $(GOARMLINE) $(GO) build -v -o wireguard-go $(GOFLAGS) .
-	mv /tmp/wireguard-go/wireguard-go bin/wireguard-go
 
 .PHONY: generate
 generate: wireguard-go

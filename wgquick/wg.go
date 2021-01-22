@@ -22,7 +22,7 @@ import (
 
 // wgGo runs a embedded wireguard-go for interface creation.
 func wgGo(iface string) error {
-	wgob, err := assets.Asset("bin/wireguard-go")
+	wgob, err := assets.Asset("third_party/wireguard-go/wireguard-go")
 	if err != nil {
 		return fmt.Errorf("cannot get wireguard-go: %w", err)
 	}

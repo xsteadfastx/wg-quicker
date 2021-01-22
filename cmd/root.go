@@ -124,7 +124,7 @@ func loadConfig(cfg string) (*wgquick.Config, logrus.FieldLogger) {
 }
 
 func init() {
-	rootCmd.PersistentFlags().StringVarP(&iface, "iface", "i", "", "interface")
+	rootCmd.PersistentFlags().StringVarP(&iface, "iface", "i", "", "if interface name should differ from config")
 	rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "verbose")
 	rootCmd.PersistentFlags().IntVarP(&protocol, "route-protocol", "p", 0, "route protocol to use for our routes")
 	rootCmd.PersistentFlags().IntVarP(&metric, "route-metric", "m", 0, "route metric to use for our routes")
