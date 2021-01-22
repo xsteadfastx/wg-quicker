@@ -18,6 +18,9 @@ builds:
       - "-s"
       - "-w"
       - "-extldflags '-static'"
+      - "-X go.xsfx.dev/wg-quicker/cmd.version={{.Version}}"
+      - "-X go.xsfx.dev/wg-quicker/cmd.commit={{.ShortCommit}}"
+      - "-X go.xsfx.dev/wg-quicker/cmd.date={{.Date}}"
     hooks:
       pre:
         - make clean

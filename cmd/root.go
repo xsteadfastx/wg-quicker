@@ -2,12 +2,19 @@
 package cmd
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os"
 
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"go.xsfx.dev/wg-quicker/wgquick"
+)
+
+var (
+	version = "dev"
+	commit  = "none"
+	date    = "unknown"
 )
 
 var (
@@ -30,6 +37,14 @@ var rootCmd = &cobra.Command{
 			logrus.Fatal(err)
 		}
 		os.Exit(0)
+	},
+}
+
+var versionCmd = &cobra.Command{
+	Use:   "version",
+	Short: "Print version informations",
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Printf("wg-quicker %s, commit %s, build on %s", version, commit, date) // nolint: forbidigo
 	},
 }
 
@@ -117,6 +132,7 @@ func init() {
 	rootCmd.AddCommand(upCmd)
 	rootCmd.AddCommand(downCmd)
 	rootCmd.AddCommand(syncCmd)
+	rootCmd.AddCommand(versionCmd)
 }
 
 func Execute() {
