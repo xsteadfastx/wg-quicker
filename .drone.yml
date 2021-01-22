@@ -12,7 +12,7 @@ steps:
     image: alpine/git
     commands:
       - git submodule init
-      - git submodule update --recursive --remote
+      - git submodule update
 
   - name: go-bindata
     image: golang:latest
@@ -53,6 +53,7 @@ steps:
         exclude:
           - tag
     depends_on:
+      - submodules
       - clean
 
   - name: release
@@ -67,4 +68,5 @@ steps:
       event:
         - tag
     depends_on:
+      - submodules
       - clean
