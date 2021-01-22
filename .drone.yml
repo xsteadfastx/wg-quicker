@@ -48,14 +48,15 @@ steps:
     commands:
       - (cd /tmp; go get -u github.com/go-bindata/go-bindata/...)
       - make build
-    when:
-      event:
-        exclude:
-          - tag
     depends_on:
       - submodules
       - clean
 
+---
+kind: pipeline
+name: deploy
+
+steps:
   - name: release
     image: goreleaser/goreleaser:latest
     environment:
@@ -64,11 +65,12 @@ steps:
     commands:
       - (cd /tmp; go get -u github.com/go-bindata/go-bindata/...)
       - goreleaser release --rm-dist --parallelism=1
-    trigger:
-      event:
-        - promote
-      target:
-        - production
-    depends_on:
-      - submodules
-      - clean
+
+depends_on:
+  - default
+
+trigger:
+  event:
+    - promote
+  target:
+    - production
