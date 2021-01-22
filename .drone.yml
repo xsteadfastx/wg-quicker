@@ -3,10 +3,15 @@ kind: pipeline
 name: default
 
 steps:
-  - name: git
+  - name: tags
     image: alpine/git
     commands:
       - git fetch --tags
+
+  - name: submodules
+    image: alpine/git
+    commands:
+      - git submodule init
       - git submodule update --recursive --remote
 
   - name: go-bindata

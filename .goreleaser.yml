@@ -2,6 +2,7 @@
 project_name: wg-quicker
 gitea_urls:
   api: https://git.xsfx.dev/api/v1/
+
 builds:
   - id: amd64
     env:
@@ -19,8 +20,8 @@ builds:
       - "-X go.xsfx.dev/wg-quicker/cmd.date={{.Date}}"
     hooks:
       pre:
-        - make clean
         - make generate GOARCH={{.Arch}}
+
   - id: arm64
     env:
       - CGO_ENABLED=0
@@ -37,8 +38,8 @@ builds:
       - "-X go.xsfx.dev/wg-quicker/cmd.date={{.Date}}"
     hooks:
       pre:
-        - make clean
         - make generate GOARCH={{.Arch}}
+
   - id: 386
     env:
       - CGO_ENABLED=0
@@ -55,8 +56,8 @@ builds:
       - "-X go.xsfx.dev/wg-quicker/cmd.date={{.Date}}"
     hooks:
       pre:
-        - make clean
         - make generate GOARCH={{.Arch}}
+
   - id: arm-5
     env:
       - CGO_ENABLED=0
@@ -77,6 +78,7 @@ builds:
       pre:
         - make clean
         - make generate GOARCH={{.Arch}} GOARM=5
+
   - id: arm-6
     env:
       - CGO_ENABLED=0
@@ -95,8 +97,8 @@ builds:
       - "-X go.xsfx.dev/wg-quicker/cmd.date={{.Date}}"
     hooks:
       pre:
-        - make clean
         - make generate GOARCH={{.Arch}} GOARM=6
+
   - id: arm-7
     env:
       - CGO_ENABLED=0
@@ -115,15 +117,18 @@ builds:
       - "-X go.xsfx.dev/wg-quicker/cmd.date={{.Date}}"
     hooks:
       pre:
-        - make clean
         - make generate GOARCH={{.Arch}} GOARM=7
+
 archives:
   - replacements:
       darwin: macos
+
 checksum:
   name_template: "checksums.txt"
+
 snapshot:
   name_template: "{{ .Tag }}-next"
+
 changelog:
   sort: asc
   filters:
