@@ -83,3 +83,4 @@ fabric.properties
 assets/*
 dist/*
 bin/*
+.envrc
