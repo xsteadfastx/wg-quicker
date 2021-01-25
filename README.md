@@ -1,9 +1,11 @@
 <p align="center">
         <img src="./logo.png" width="587" alt="logo">
-        <a href="https://ci.xsfx.dev/xsteadfastx/wg-quicker"><img src="https://ci.xsfx.dev/api/badges/xsteadfastx/wg-quicker/status.svg" /></a>
-        <a href="https://pkg.go.dev/go.xsfx.dev/wg-quicker"><img src="https://pkg.go.dev/badge/go.xsfx.dev/wg-quicker.svg" alt="Go Reference"></a>
-        <a href="https://goreportcard.com/report/go.xsfx.dev/wg-quicker"><img src="https://goreportcard.com/badge/go.xsfx.dev/wg-quicker" alt="Go Report Card"></a>
         <p align="center"><b>wg-quick like library with batteries included</b></p>
+        <p align="center">
+                <a href="https://ci.xsfx.dev/xsteadfastx/wg-quicker"><img src="https://ci.xsfx.dev/api/badges/xsteadfastx/wg-quicker/status.svg" /></a>
+                <a href="https://pkg.go.dev/go.xsfx.dev/wg-quicker"><img src="https://pkg.go.dev/badge/go.xsfx.dev/wg-quicker.svg" alt="Go Reference"></a>
+                <a href="https://goreportcard.com/report/go.xsfx.dev/wg-quicker"><img src="https://goreportcard.com/badge/go.xsfx.dev/wg-quicker" alt="Go Report Card"></a>
+        </p>
 </p>
 
 ---
