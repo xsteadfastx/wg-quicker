@@ -10,7 +10,7 @@
 
 ---
 
-This is a friendly fork of [wg-quick-go](https://github.com/nmiculinic/wg-quick-go). It contains everything needed to get a system into a wireguard vpn network. If there is no wireguard kernel modul available, it will spin up the embedded wireguard-go to create a wireguard interface.
+This is a friendly fork of [wg-quick-go](https://github.com/nmiculinic/wg-quick-go). So all glory to them!!!11!! It contains everything needed to get a system into a wireguard vpn network. If there is no wireguard kernel modul available, it will spin up the embedded wireguard-go to create a wireguard interface.
 
 # Installation
 
