@@ -18,11 +18,11 @@ var (
 )
 
 var (
-	iface    string
-	verbose  bool
-	protocol int
-	metric   int
-	wgo      bool
+	iface     string
+	verbose   bool
+	protocol  int
+	metric    int
+	userspace bool
 )
 
 var rootCmd = &cobra.Command{
@@ -54,7 +54,7 @@ var upCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		c, log := loadConfig(args[0])
-		if err := wgquick.Up(c, iface, wgo, log); err != nil {
+		if err := wgquick.Up(c, iface, userspace, log); err != nil {
 			logrus.WithError(err).Errorln("cannot up interface")
 		}
 	},
@@ -78,7 +78,7 @@ var syncCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		c, log := loadConfig(args[0])
-		if err := wgquick.Sync(c, iface, wgo, log); err != nil {
+		if err := wgquick.Sync(c, iface, userspace, log); err != nil {
 			logrus.WithError(err).Errorln("cannot sync interface")
 		}
 	},
@@ -144,7 +144,12 @@ func init() {
 	rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "verbose")
 	rootCmd.PersistentFlags().IntVarP(&protocol, "route-protocol", "p", 0, "route protocol to use for our routes")
 	rootCmd.PersistentFlags().IntVarP(&metric, "route-metric", "m", 0, "route metric to use for our routes")
-	rootCmd.PersistentFlags().BoolVarP(&wgo, "wgo", "w", false, "enforce wireguard-go")
+	rootCmd.PersistentFlags().BoolVarP(
+		&userspace,
+		"userspace", "u",
+		false,
+		"enforce userspace implementation of wireguard",
+	)
 	rootCmd.AddCommand(upCmd)
 	rootCmd.AddCommand(downCmd)
 	rootCmd.AddCommand(syncCmd)

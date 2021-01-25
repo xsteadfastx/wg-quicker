@@ -20,8 +20,8 @@ import (
 	"golang.zx2c4.com/wireguard/wgctrl"
 )
 
-// wgGo runs a embedded wireguard-go for interface creation.
-func wgGo(iface string) error {
+// userspace runs a embedded wireguard-go for interface creation.
+func userspace(iface string) error {
 	wgob, err := assets.Asset("third_party/wireguard-go/wireguard-go")
 	if err != nil {
 		return fmt.Errorf("cannot get wireguard-go: %w", err)
@@ -41,7 +41,7 @@ func wgGo(iface string) error {
 }
 
 // Up sets and configures the wg interface. Mostly equivalent to `wg-quick up iface`.
-func Up(cfg *Config, iface string, wgo bool, logger logrus.FieldLogger) error {
+func Up(cfg *Config, iface string, uspace bool, logger logrus.FieldLogger) error {
 	log := logger.WithField("iface", iface)
 
 	_, err := netlink.LinkByName(iface)
@@ -67,7 +67,7 @@ func Up(cfg *Config, iface string, wgo bool, logger logrus.FieldLogger) error {
 		log.Infoln("applied pre-up command")
 	}
 
-	if err := Sync(cfg, iface, wgo, logger); err != nil {
+	if err := Sync(cfg, iface, uspace, logger); err != nil {
 		return err
 	}
 
@@ -156,10 +156,10 @@ func execSh(command string, iface string, log logrus.FieldLogger, stdin ...strin
 // * SyncWireguardDevice --> configures allowedIP & other wireguard specific settings.
 // * SyncAddress --> synces linux addresses bounded to this interface.
 // * SyncRoutes --> synces all allowedIP routes to route to this interface.
-func Sync(cfg *Config, iface string, wgo bool, logger logrus.FieldLogger) error {
+func Sync(cfg *Config, iface string, uspace bool, logger logrus.FieldLogger) error {
 	log := logger.WithField("iface", iface)
 
-	link, err := SyncLink(cfg, iface, wgo, log)
+	link, err := SyncLink(cfg, iface, uspace, log)
 	if err != nil {
 		log.WithError(err).Errorln("cannot sync wireguard link")
 
@@ -223,7 +223,7 @@ func SyncWireguardDevice(cfg *Config, link netlink.Link, log logrus.FieldLogger)
 
 // SyncLink synces link state with the config.
 // It does not sync Wireguard settings, just makes sure the device is up and type wireguard.
-func SyncLink(cfg *Config, iface string, wgo bool, log logrus.FieldLogger) (netlink.Link, error) {
+func SyncLink(cfg *Config, iface string, uspace bool, log logrus.FieldLogger) (netlink.Link, error) {
 	link, err := netlink.LinkByName(iface)
 	// nolint: nestif
 	if err != nil {
@@ -243,20 +243,20 @@ func SyncLink(cfg *Config, iface string, wgo bool, log logrus.FieldLogger) (netl
 			LinkType: "wireguard",
 		}
 
-		if wgo {
+		if uspace {
 			log.Info("enforcing embedded wireguard-go")
 
-			if err := wgGo(iface); err != nil {
+			if err := userspace(iface); err != nil {
 				log.WithError(err).Errorf("cannot create link through wireguard-go: %s", err.Error())
 
 				return nil, fmt.Errorf("cannot create link: %w", err)
 			}
-		} else if !wgo {
+		} else if !uspace {
 			if err := netlink.LinkAdd(wgLink); err != nil {
 				log.WithError(err).Errorf("cannot create link: %s", err.Error())
 				log.Info("trying to use embedded wireguard-go")
 
-				if err := wgGo(iface); err != nil {
+				if err := userspace(iface); err != nil {
 					log.WithError(err).Errorf("cannot create link through wireguard-go: %s", err.Error())
 
 					return nil, fmt.Errorf("cannot create link: %w", err)
