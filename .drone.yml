@@ -61,6 +61,8 @@ steps:
     environment:
       GITEA_TOKEN:
         from_secret: gitea_token
+      HOMEBREW_TAP_GITHUB_TOKEN:
+        from_secret: homebrew_tap_github_token
     commands:
       - (cd /tmp; go get -u github.com/go-bindata/go-bindata/...)
       - goreleaser release --rm-dist --parallelism=1
