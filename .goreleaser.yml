@@ -147,12 +147,12 @@ nfpms:
 
 brews:
   - name: wg-quicker
-    github:
+    tap:
       owner: xsteadfastx
       name: homebrew-tap
       token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
     commit_author:
-      name: Marvin Preuss
+      name: Marvin Steadfast
       email: marvin@xsteadfastx.org
     homepage: https://git.xsfx.dev/xsteadfastx/wg-quicker
     test: |
