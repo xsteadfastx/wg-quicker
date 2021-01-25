@@ -1,0 +1,16 @@
+[Unit]
+Description=WireGuard via wg-quicker for %I
+After=network-online.target nss-lookup.target
+Wants=network-online.target nss-lookup.target
+PartOf=wg-quick.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/bin/wg-quicker up %i
+ExecStop=/usr/local/bin/wg-quicker down %i
+ExecReload=/usr/bin/local/wg-quicker sync %i
+
+[Install]
+WantedBy=multi-user.target
+

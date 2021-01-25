@@ -1,0 +1,33 @@
+#!/sbin/openrc-run
+
+name="WireGuard"
+description="WireGuard via wg-quicker"
+
+depend() {
+	need net
+	use dns
+}
+
+CONF="${SVCNAME#*.}"
+
+checkconfig() {
+	if [ "$CONF" = "$SVCNAME" ]; then
+		eerror "You cannot call this init script directly. You must create a symbolic link to it with the configuration name:"
+		eerror "    ln -s /etc/init.d/wg-quicker /etc/init.d/wg-quicker.vpn0"
+		eerror "And then call it instead:"
+		eerror "    /etc/init.d/wg-quicker.vpn0 start"
+		return 1
+	fi
+}
+
+start() {
+	ebegin "Starting $description for $CONF"
+	wg-quicker up "$CONF"
+	eend $? "Failed to start $description for $CONF"
+}
+
+stop() {
+	ebegin "Stopping $description for $CONF"
+	wg-quicker down "$CONF"
+	eend $? "Failed to stop $description for $CONF"
+}
