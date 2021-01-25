@@ -51,12 +51,11 @@ steps:
     depends_on:
       - submodules
       - clean
+    when:
+      event:
+        exclude:
+          - promote
 
----
-kind: pipeline
-name: deploy
-
-steps:
   - name: release
     image: goreleaser/goreleaser:latest
     environment:
@@ -65,12 +64,11 @@ steps:
     commands:
       - (cd /tmp; go get -u github.com/go-bindata/go-bindata/...)
       - goreleaser release --rm-dist --parallelism=1
-
-depends_on:
-  - default
-
-trigger:
-  event:
-    - promote
-  target:
-    - production
+    depends_on:
+      - submodules
+      - clean
+    when:
+      event:
+        - promote
+      target:
+        - production
