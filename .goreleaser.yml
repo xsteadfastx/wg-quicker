@@ -158,5 +158,7 @@ brews:
       name: Marvin Steadfast
       email: marvin@xsteadfastx.org
     homepage: https://git.xsfx.dev/xsteadfastx/wg-quicker
+    install: |
+      bin.install "wg-quicker"
     test: |
       system "#{bin}/wg-quicker version"

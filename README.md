@@ -16,7 +16,12 @@ This is a friendly fork of [wg-quick-go](https://github.com/nmiculinic/wg-quick-
 
 ## Prebuild packages
 
-Get these on release [page](https://git.xsfx.dev/xsteadfastx/wg-quicker/releases).
+Get these on the release [page](https://github.com/xsteadfastx/wg-quicker/releases).
+
+## Homebrew
+
+- `brew tap xsteadfastx/tap https://github.com/xsteadfastx/homebrew-tap`
+- `brew install wg-quicker`
 
 ## Compile it for yourself
 
