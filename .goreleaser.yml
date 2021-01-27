@@ -1,7 +1,5 @@
 ---
 project_name: wg-quicker
-gitea_urls:
-  api: https://git.xsfx.dev/api/v1/
 
 builds:
   - id: amd64
@@ -135,6 +133,12 @@ changelog:
     exclude:
       - "^docs:"
       - "^test:"
+
+release:
+  github:
+    owner: xsteadfastx
+    name: wg-quicker
+
 nfpms:
   - formats:
       - apk
@@ -144,15 +148,16 @@ nfpms:
       386: i386
     homepage: https://git.xsfx.dev/xsteadfastx/wg-quicker
     maintainer: Marvin Preuss <marvin@xsteadfastx.org>
-# brews:
-#   - name: wg-quicker
-#     tap:
-#       owner: xsteadfastx
-#       name: homebrew-tap
-#       token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
-#     commit_author:
-#       name: Marvin Steadfast
-#       email: marvin@xsteadfastx.org
-#     homepage: https://git.xsfx.dev/xsteadfastx/wg-quicker
-#     test: |
-#       system "#{bin}/wg-quicker version"
+
+brews:
+  - name: wg-quicker
+    tap:
+      owner: xsteadfastx
+      name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+    commit_author:
+      name: Marvin Steadfast
+      email: marvin@xsteadfastx.org
+    homepage: https://git.xsfx.dev/xsteadfastx/wg-quicker
+    test: |
+      system "#{bin}/wg-quicker version"
