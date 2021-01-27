@@ -154,7 +154,6 @@ brews:
     tap:
       owner: xsteadfastx
       name: homebrew-tap
-      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
     commit_author:
       name: Marvin Steadfast
       email: marvin@xsteadfastx.org

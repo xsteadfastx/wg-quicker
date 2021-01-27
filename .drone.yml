@@ -54,7 +54,7 @@ steps:
     when:
       event:
         exclude:
-          - promote
+          - tag
 
   - name: release
     image: goreleaser/goreleaser:latest
@@ -69,6 +69,4 @@ steps:
       - clean
     when:
       event:
-        - promote
-      target:
-        - production
+        - tag
