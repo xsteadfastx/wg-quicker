@@ -1,4 +1,4 @@
 check host wg-quicker with address 10.100.100.1
-    start program = "/bin/bash -c '/etc/init.d/wg-quicker start'"
-    stop program = "/bin/bash -c '/etc/init.d/wg-quicker stop'"
+    start program = "/bin/bash -c '/etc/init.d/wg-quicker.w1nd50r start'"
+    stop program = "/bin/bash -c '/etc/init.d/wg-quicker.w1nd50r stop'"
     if failed ping then restart
