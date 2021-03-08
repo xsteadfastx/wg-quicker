@@ -16,14 +16,12 @@ steps:
 
   - name: go-bindata
     image: golang:latest
-    pull: always
     commands:
       - (cd /tmp; go get -u github.com/go-bindata/go-bindata/...)
       - go-bindata -pkg assets -o assets/bindata.go -nomemcopy /bin/true
 
   - name: lint
     image: golangci/golangci-lint:latest
-    pull: always
     commands:
       - make lint
     depends_on:
@@ -46,8 +44,7 @@ steps:
       - test
 
   - name: build
-    image: goreleaser/goreleaser:latest
-    pull: always
+    image: goreleaser/goreleaser:v0.159.0
     commands:
       - (cd /tmp; go get -u github.com/go-bindata/go-bindata/...)
       - make build
@@ -60,8 +57,7 @@ steps:
           - tag
 
   - name: release
-    image: goreleaser/goreleaser:latest
-    pull: always
+    image: goreleaser/goreleaser:v0.159.0
     environment:
       GITHUB_TOKEN:
         from_secret: github_token
