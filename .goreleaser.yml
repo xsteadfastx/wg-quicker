@@ -148,6 +148,21 @@ nfpms:
       386: i386
     homepage: https://git.xsfx.dev/xsteadfastx/wg-quicker
     maintainer: Marvin Preuss <marvin@xsteadfastx.org>
+    bindir: /usr/local/bin
+    contents:
+      - src: init/openrc/wg-quicker.init
+        dst: /etc/init.d/wg-quicker
+        packager: apk
+        file_info:
+          mode: 0755
+          owner: root
+          group: root
+      - src: init/systemd/wg-quicker@.service
+        dst: /etc/systemd/system/wg-quicker@.service
+        packager: deb
+      - src: init/systemd/wg-quicker@.service
+        dst: /etc/systemd/system/wg-quicker@.service
+        packager: rpm
 
 brews:
   - name: wg-quicker

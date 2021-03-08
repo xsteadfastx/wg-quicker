@@ -22,12 +22,12 @@ checkconfig() {
 
 start() {
 	ebegin "Starting $description for $CONF"
-	wg-quicker up "$CONF"
+	/usr/local/bin/wg-quicker up "$CONF"
 	eend $? "Failed to start $description for $CONF"
 }
 
 stop() {
 	ebegin "Stopping $description for $CONF"
-	wg-quicker down "$CONF"
+	/usr/local/bin/wg-quicker down "$CONF"
 	eend $? "Failed to stop $description for $CONF"
 }
