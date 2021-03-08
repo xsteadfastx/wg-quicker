@@ -1,4 +1,4 @@
-// nolint: gochecknoglobals, gomnd, goerr113
+// nolint: gochecknoglobals, gomnd, goerr113, cyclop
 package wgquick
 
 import (

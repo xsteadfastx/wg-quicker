@@ -1,4 +1,4 @@
-// nolint: errorlint
+// nolint: errorlint, cyclop
 package wgquick
 
 import (
