@@ -123,7 +123,7 @@ func Down(cfg *Config, iface string, uspace bool, logger logrus.FieldLogger) err
 	// By removing it, it will close itself.
 	if uspace {
 		if err := os.Remove(fmt.Sprintf("/var/run/wireguard/%s.sock", iface)); err != nil {
-			return err
+			return fmt.Errorf("could not remove wireguard-go sock file: %w", err)
 		}
 	}
 

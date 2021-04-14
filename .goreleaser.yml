@@ -133,6 +133,8 @@ changelog:
     exclude:
       - "^docs:"
       - "^test:"
+      - "^lint"
+      - "^happy linting"
 
 release:
   github:
