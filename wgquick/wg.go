@@ -1,4 +1,4 @@
-// nolint: errorlint, cyclop
+// nolint:errorlint,cyclop
 package wgquick
 
 import (
@@ -83,7 +83,7 @@ func Up(cfg *Config, iface string, uspace bool, logger logrus.FieldLogger) error
 }
 
 // Down destroys the wg interface. Mostly equivalent to `wg-quick down iface`.
-func Down(cfg *Config, iface string, logger logrus.FieldLogger) error {
+func Down(cfg *Config, iface string, uspace bool, logger logrus.FieldLogger) error {
 	log := logger.WithField("iface", iface)
 
 	link, err := netlink.LinkByName(iface)
@@ -117,6 +117,14 @@ func Down(cfg *Config, iface string, logger logrus.FieldLogger) error {
 		}
 
 		log.Infoln("applied post-down command")
+	}
+
+	// If using userland wireguard, the sock file indicates a running wireguard-go process.
+	// By removing it, it will close itself.
+	if uspace {
+		if err := os.Remove(fmt.Sprintf("/var/run/wireguard/%s.sock", iface)); err != nil {
+			return err
+		}
 	}
 
 	return nil
