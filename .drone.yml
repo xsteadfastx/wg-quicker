@@ -13,60 +13,44 @@ steps:
     commands:
       - git submodule init
       - git submodule update
-
-  - name: go-bindata
-    image: golang:latest
-    commands:
-      - (cd /tmp; go get -u github.com/go-bindata/go-bindata/...)
-      - go-bindata -pkg assets -o assets/bindata.go -nomemcopy /bin/true
+    depends_on: tags
 
   - name: lint
     image: golangci/golangci-lint:latest
     commands:
       - make lint
     depends_on:
-      - go-bindata
+      - submodule
 
   - name: test
     image: golang:latest
     commands:
       - make test
     depends_on:
-      - go-bindata
+      - submodules
 
-  - name: clean
-    image: golang:latest
+  - name: build
+    image: goreleaser/goreleaser:v0.162.0
     commands:
-      - make clean
-      - git checkout -- .
+      - make build
     depends_on:
       - lint
       - test
-
-  - name: build
-    image: goreleaser/goreleaser:v0.159.0
-    commands:
-      - (cd /tmp; go get -u github.com/go-bindata/go-bindata/...)
-      - make build
-    depends_on:
-      - submodules
-      - clean
     when:
       event:
         exclude:
           - tag
 
   - name: release
-    image: goreleaser/goreleaser:v0.159.0
+    image: goreleaser/goreleaser:v0.162.0
     environment:
       GITHUB_TOKEN:
         from_secret: github_token
     commands:
-      - (cd /tmp; go get -u github.com/go-bindata/go-bindata/...)
       - goreleaser release --rm-dist --parallelism=1
     depends_on:
-      - submodules
-      - clean
+      - lint
+      - test
     when:
       event:
         - tag
