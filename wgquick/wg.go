@@ -16,25 +16,37 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/vishvananda/netlink"
 	"go.xsfx.dev/wg-quicker/assets"
+	"go.xsfx.dev/wg-quicker/tools/pidof"
 	"golang.org/x/sys/unix"
 	"golang.zx2c4.com/wireguard/wgctrl"
 )
 
 // userspace runs a embedded wireguard-go for interface creation.
 func userspace(iface string) error {
-	wgob, err := assets.Asset("third_party/wireguard-go/wireguard-go")
+	wgo, err := byteexec.New(assets.WGO, "wireguard-go")
 	if err != nil {
-		return fmt.Errorf("cannot get wireguard-go: %w", err)
-	}
-
-	wgo, err := byteexec.New(wgob, "wireguard-go")
-	if err != nil {
-		return fmt.Errorf("unable to build byteexec for wireguard-go: %w", err)
+		return fmt.Errorf("unable to create byteexec for wireguard-go: %w", err)
 	}
 
 	cmd := wgo.Command(iface)
 	if err := cmd.Start(); err != nil {
 		return fmt.Errorf("could not start wireguard-go: %w", err)
+	}
+
+	return nil
+}
+
+// rmWireguardGoSock removes sock file.
+// This should remove a userspace wireguard-go implementation created interface.
+func rmWireguardGoSock(iface string) error {
+	sock := fmt.Sprintf("/var/run/wireguard/%s.sock", iface)
+
+	if _, err := os.Stat(sock); os.IsNotExist(err) {
+		return nil
+	}
+
+	if err := os.Remove(sock); err != nil {
+		return fmt.Errorf("could not remove %s: %w", sock, err)
 	}
 
 	return nil
@@ -83,7 +95,7 @@ func Up(cfg *Config, iface string, uspace bool, logger logrus.FieldLogger) error
 }
 
 // Down destroys the wg interface. Mostly equivalent to `wg-quick down iface`.
-func Down(cfg *Config, iface string, uspace bool, logger logrus.FieldLogger) error {
+func Down(cfg *Config, iface string, logger logrus.FieldLogger) error {
 	log := logger.WithField("iface", iface)
 
 	link, err := netlink.LinkByName(iface)
@@ -119,12 +131,16 @@ func Down(cfg *Config, iface string, uspace bool, logger logrus.FieldLogger) err
 		log.Infoln("applied post-down command")
 	}
 
-	// If using userland wireguard, the sock file indicates a running wireguard-go process.
-	// By removing it, it will close itself.
-	if uspace {
-		if err := os.Remove(fmt.Sprintf("/var/run/wireguard/%s.sock", iface)); err != nil {
-			return fmt.Errorf("could not remove wireguard-go sock file: %w", err)
-		}
+	// Some embedded userspace wireguard-go cleanup jobs.
+
+	// Removes interface through sock file deletion.
+	if err := rmWireguardGoSock(iface); err != nil {
+		return fmt.Errorf("could not remove wireguard-go sock file: %w", err)
+	}
+
+	// Trying to kill embedded wireguard-go process.
+	if err := pidof.Pkill(".byteexec/wireguard-go " + iface); err != nil {
+		return fmt.Errorf("could not kill wireguard-go process: %w", err)
 	}
 
 	return nil
@@ -205,7 +221,7 @@ func Sync(cfg *Config, iface string, uspace bool, logger logrus.FieldLogger) err
 	}
 
 	log.Info("synced routed")
-	log.Info("Successfully synced device")
+	log.Info("successfully synced device")
 
 	return nil
 }

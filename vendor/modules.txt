@@ -1,14 +1,19 @@
 # github.com/davecgh/go-spew v1.1.1
 github.com/davecgh/go-spew/spew
+# github.com/fsnotify/fsnotify v1.4.7
+github.com/fsnotify/fsnotify
 # github.com/getlantern/byteexec v0.0.0-20170405023437-4cfb26ec74f4
+## explicit
 github.com/getlantern/byteexec
 # github.com/getlantern/context v0.0.0-20190109183933-c447772a6520
 github.com/getlantern/context
 # github.com/getlantern/errors v1.0.1
 github.com/getlantern/errors
 # github.com/getlantern/filepersist v0.0.0-20160317154340-c5f0cd24e799
+## explicit
 github.com/getlantern/filepersist
 # github.com/getlantern/golog v0.0.0-20201105130739-9586b8bde3a9
+## explicit
 github.com/getlantern/golog
 # github.com/getlantern/hex v0.0.0-20190417191902-c6586a6fe0b7
 github.com/getlantern/hex
@@ -18,43 +23,118 @@ github.com/getlantern/hidden
 github.com/getlantern/ops
 # github.com/go-stack/stack v1.8.0
 github.com/go-stack/stack
+# github.com/hashicorp/hcl v1.0.0
+github.com/hashicorp/hcl
+github.com/hashicorp/hcl/hcl/ast
+github.com/hashicorp/hcl/hcl/parser
+github.com/hashicorp/hcl/hcl/printer
+github.com/hashicorp/hcl/hcl/scanner
+github.com/hashicorp/hcl/hcl/strconv
+github.com/hashicorp/hcl/hcl/token
+github.com/hashicorp/hcl/json/parser
+github.com/hashicorp/hcl/json/scanner
+github.com/hashicorp/hcl/json/token
 # github.com/inconshreveable/mousetrap v1.0.0
 github.com/inconshreveable/mousetrap
 # github.com/konsorten/go-windows-terminal-sequences v1.0.1
 github.com/konsorten/go-windows-terminal-sequences
+# github.com/magiconair/properties v1.8.1
+github.com/magiconair/properties
 # github.com/mdlayher/genetlink v0.0.0-20191008151445-a2cadeac9a63
 github.com/mdlayher/genetlink
 # github.com/mdlayher/netlink v0.0.0-20191009155606-de872b0d824b
 github.com/mdlayher/netlink
 github.com/mdlayher/netlink/nlenc
+# github.com/mitchellh/go-homedir v1.1.0
+github.com/mitchellh/go-homedir
+# github.com/mitchellh/mapstructure v1.1.2
+github.com/mitchellh/mapstructure
 # github.com/oxtoacart/bpool v0.0.0-20190530202638-03653db5a59c
 github.com/oxtoacart/bpool
+# github.com/pelletier/go-toml v1.2.0
+github.com/pelletier/go-toml
+# github.com/pkg/errors v0.8.1
+github.com/pkg/errors
 # github.com/pmezard/go-difflib v1.0.0
 github.com/pmezard/go-difflib/difflib
+# github.com/rs/zerolog v1.18.0
+github.com/rs/zerolog
+github.com/rs/zerolog/internal/cbor
+github.com/rs/zerolog/internal/json
+github.com/rs/zerolog/log
 # github.com/sirupsen/logrus v1.4.0
+## explicit
 github.com/sirupsen/logrus
+# github.com/spf13/afero v1.1.2
+github.com/spf13/afero
+github.com/spf13/afero/mem
+# github.com/spf13/cast v1.3.0
+github.com/spf13/cast
 # github.com/spf13/cobra v1.1.1
+## explicit
 github.com/spf13/cobra
+# github.com/spf13/jwalterweatherman v1.0.0
+github.com/spf13/jwalterweatherman
 # github.com/spf13/pflag v1.0.5
 github.com/spf13/pflag
+# github.com/spf13/viper v1.7.0
+github.com/spf13/viper
+# github.com/stretchr/objx v0.1.1
+github.com/stretchr/objx
 # github.com/stretchr/testify v1.5.1
+## explicit
 github.com/stretchr/testify/assert
+github.com/stretchr/testify/mock
+# github.com/subosito/gotenv v1.2.0
+github.com/subosito/gotenv
+# github.com/vektra/mockery/v2 v2.7.4
+## explicit
+github.com/vektra/mockery/v2
+github.com/vektra/mockery/v2/cmd
+github.com/vektra/mockery/v2/pkg
+github.com/vektra/mockery/v2/pkg/config
+github.com/vektra/mockery/v2/pkg/logging
 # github.com/vishvananda/netlink v1.0.0
+## explicit
 github.com/vishvananda/netlink
 github.com/vishvananda/netlink/nl
 # github.com/vishvananda/netns v0.0.0-20180720170159-13995c7128cc
+## explicit
 github.com/vishvananda/netns
 # golang.org/x/crypto v0.0.0-20191028145041-f83a4685e152
 golang.org/x/crypto/curve25519
 golang.org/x/crypto/ssh/terminal
-# golang.org/x/net v0.0.0-20191028085509-fe3aa8a45271
+# golang.org/x/mod v0.2.0
+golang.org/x/mod/module
+golang.org/x/mod/semver
+# golang.org/x/net v0.0.0-20200226121028-0de0cce0169b
 golang.org/x/net/bpf
 # golang.org/x/sys v0.0.0-20200302150141-5c8b2ff67527
+## explicit
 golang.org/x/sys/unix
 golang.org/x/sys/windows
+# golang.org/x/text v0.3.2
+golang.org/x/text/transform
+golang.org/x/text/unicode/norm
+# golang.org/x/tools v0.0.0-20200323144430-8dcfad9e016e
+golang.org/x/tools/go/ast/astutil
+golang.org/x/tools/go/gcexportdata
+golang.org/x/tools/go/internal/gcimporter
+golang.org/x/tools/go/internal/packagesdriver
+golang.org/x/tools/go/packages
+golang.org/x/tools/imports
+golang.org/x/tools/internal/fastwalk
+golang.org/x/tools/internal/gocommand
+golang.org/x/tools/internal/gopathwalk
+golang.org/x/tools/internal/imports
+golang.org/x/tools/internal/packagesinternal
+# golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543
+golang.org/x/xerrors
+golang.org/x/xerrors/internal
 # golang.zx2c4.com/wireguard v0.0.20191012
 golang.zx2c4.com/wireguard/ipc/winpipe
 # golang.zx2c4.com/wireguard/wgctrl v0.0.0-20191028205011-23406de29c08
+## explicit
 golang.zx2c4.com/wireguard/wgctrl
 golang.zx2c4.com/wireguard/wgctrl/internal/wginternal
 golang.zx2c4.com/wireguard/wgctrl/internal/wglinux
@@ -63,5 +143,7 @@ golang.zx2c4.com/wireguard/wgctrl/internal/wgopenbsd
 golang.zx2c4.com/wireguard/wgctrl/internal/wgopenbsd/internal/wgh
 golang.zx2c4.com/wireguard/wgctrl/internal/wguser
 golang.zx2c4.com/wireguard/wgctrl/wgtypes
+# gopkg.in/ini.v1 v1.51.0
+gopkg.in/ini.v1
 # gopkg.in/yaml.v2 v2.2.8
 gopkg.in/yaml.v2

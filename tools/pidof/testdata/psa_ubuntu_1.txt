@@ -1,0 +1,3 @@
+2104  pts/17   S+     0:00 /bin/sh -c ps a|grep tmux
+2107  pts/17   S+     0:00 grep tmux
+20814 pts/13   S+     0:00 /home/linuxbrew/.linuxbrew/bin/tmux new-session -t local

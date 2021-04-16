@@ -66,7 +66,7 @@ var downCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		c, log := loadConfig(args[0])
-		if err := wgquick.Down(c, iface, userspace, log); err != nil {
+		if err := wgquick.Down(c, iface, log); err != nil {
 			logrus.WithError(err).Errorln("cannot down interface")
 		}
 	},

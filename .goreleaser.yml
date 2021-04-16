@@ -18,7 +18,7 @@ builds:
       - "-X go.xsfx.dev/wg-quicker/cmd.date={{.Date}}"
     hooks:
       pre:
-        - make generate GOARCH={{.Arch}}
+        - make wireguard-go GOARCH={{.Arch}}
 
   - id: arm64
     env:
@@ -36,7 +36,7 @@ builds:
       - "-X go.xsfx.dev/wg-quicker/cmd.date={{.Date}}"
     hooks:
       pre:
-        - make generate GOARCH={{.Arch}}
+        - make wireguard-go GOARCH={{.Arch}}
 
   - id: 386
     env:
@@ -54,7 +54,7 @@ builds:
       - "-X go.xsfx.dev/wg-quicker/cmd.date={{.Date}}"
     hooks:
       pre:
-        - make generate GOARCH={{.Arch}}
+        - make wireguard-go GOARCH={{.Arch}}
 
   - id: arm-5
     env:
@@ -74,8 +74,7 @@ builds:
       - "-X go.xsfx.dev/wg-quicker/cmd.date={{.Date}}"
     hooks:
       pre:
-        - make clean
-        - make generate GOARCH={{.Arch}} GOARM=5
+        - make wireguard-go GOARCH={{.Arch}} GOARM=5
 
   - id: arm-6
     env:
@@ -95,7 +94,7 @@ builds:
       - "-X go.xsfx.dev/wg-quicker/cmd.date={{.Date}}"
     hooks:
       pre:
-        - make generate GOARCH={{.Arch}} GOARM=6
+        - make wireguard-go GOARCH={{.Arch}} GOARM=6
 
   - id: arm-7
     env:
@@ -115,7 +114,7 @@ builds:
       - "-X go.xsfx.dev/wg-quicker/cmd.date={{.Date}}"
     hooks:
       pre:
-        - make generate GOARCH={{.Arch}} GOARM=7
+        - make wireguard-go GOARCH={{.Arch}} GOARM=7
 
 archives:
   - replacements:
@@ -133,7 +132,8 @@ changelog:
     exclude:
       - "^docs:"
       - "^test:"
-      - "^lint"
+      - "^ci:"
+      - "^lint:"
       - "^happy linting"
 
 release:

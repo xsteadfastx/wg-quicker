@@ -1,0 +1,73 @@
+PID   USER     TIME  COMMAND
+    1 root      0:00 /sbin/init
+    2 root      0:00 [kthreadd]
+    3 root      0:00 [rcu_gp]
+    4 root      0:00 [rcu_par_gp]
+    6 root      0:00 [kworker/0:0H-ev]
+    8 root      0:00 [kworker/u4:0-ev]
+    9 root      0:00 [mm_percpu_wq]
+   10 root      0:00 [ksoftirqd/0]
+   11 root      0:00 [rcu_sched]
+   12 root      0:00 [migration/0]
+   13 root      0:00 [cpuhp/0]
+   14 root      0:00 [cpuhp/1]
+   15 root      0:00 [migration/1]
+   16 root      0:00 [ksoftirqd/1]
+   18 root      0:00 [kworker/1:0H-kb]
+   19 root      0:00 [kdevtmpfs]
+   20 root      0:00 [netns]
+   23 root      0:00 [rcu_tasks_rude_]
+   24 root      0:00 [rcu_tasks_trace]
+   31 root      0:01 [kworker/1:1-mm_]
+   32 root      0:00 [kauditd]
+  235 root      0:00 [oom_reaper]
+  236 root      0:00 [writeback]
+  237 root      0:00 [kcompactd0]
+  239 root      0:00 [ksmd]
+  240 root      0:00 [khugepaged]
+  258 root      0:00 [kintegrityd]
+  259 root      0:00 [kblockd]
+  260 root      0:00 [blkcg_punt_bio]
+  409 root      0:00 [md]
+  412 root      0:00 [edac-poller]
+  416 root      0:00 [devfreq_wq]
+  422 root      0:00 [watchdogd]
+  515 root      0:00 [kworker/0:1H-kb]
+  533 root      0:00 [kswapd0]
+  535 root      0:00 [kthrotld]
+  642 root      0:00 [kworker/u5:0]
+ 1053 root      0:00 [ata_sff]
+ 1055 root      0:00 [scsi_eh_0]
+ 1067 root      0:00 [scsi_tmf_0]
+ 1071 root      0:00 [scsi_eh_1]
+ 1072 root      0:00 [scsi_tmf_1]
+ 1081 root      0:00 [kworker/u4:4-ev]
+ 1227 root      0:00 [kworker/1:1H-kb]
+ 1246 root      0:00 [jbd2/sda3-8]
+ 1247 root      0:00 [ext4-rsv-conver]
+ 1587 root      0:00 [cryptd]
+ 1609 root      0:00 [kworker/0:3+eve]
+ 1652 root      0:00 [ttm_swap]
+ 1712 root      0:00 [kworker/0:4-eve]
+ 1773 root      0:00 [ipv6_addrconf]
+ 1922 root      0:00 [jbd2/sda1-8]
+ 1923 root      0:00 [ext4-rsv-conver]
+ 2146 root      0:00 /sbin/udhcpc -b -R -p /var/run/udhcpc.eth0.pid -i eth0 -x hostname:localhost
+ 2181 root      0:00 /sbin/syslogd -t
+ 2235 root      0:00 /sbin/acpid
+ 2261 root      0:00 /usr/sbin/crond -c /etc/crontabs
+ 2290 root      0:00 sshd: /usr/sbin/sshd [listener] 0 of 10-100 startups
+ 2297 root      0:00 /bin/login -- root
+ 2298 root      0:00 /sbin/getty 38400 tty2
+ 2302 root      0:00 /sbin/getty 38400 tty3
+ 2306 root      0:00 /sbin/getty 38400 tty4
+ 2310 root      0:00 /sbin/getty 38400 tty5
+ 2314 root      0:00 /sbin/getty 38400 tty6
+ 2318 root      0:00 -ash
+ 2328 root      0:00 [kworker/1:0-eve]
+ 2332 root      0:00 [kworker/0:0]
+ 2346 root      0:00 [kworker/u4:1-ev]
+ 2347 root      0:00 [kworker/1:2]
+ 2360 root      0:00 /root/.byteexec/wireguard-go w1nd50r
+ 2401 root      0:00 ps a
+ 2402 root      0:00 curl -F sprunge=<- http://sprunge.us
