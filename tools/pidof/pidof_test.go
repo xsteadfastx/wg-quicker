@@ -1,9 +1,10 @@
-// nolint:gochecknoglobals,paralleltest,goerr113
+// nolint:gochecknoglobals,paralleltest,goerr113,funlen
 package pidof_test
 
 import (
 	"embed"
 	"fmt"
+	"log"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -52,9 +53,16 @@ func TestPidof(t *testing.T) {
 			2501,
 			nil,
 		},
+		{
+			"/root/.byteexec/wireguard-go w1nd50r",
+			"psa_alpine_3.txt",
+			0,
+			pidof.ErrPIDNotFound,
+		},
 	}
 
 	for _, table := range tables {
+		log.Printf("testfile: %s", table.data)
 		out, err := testdata.ReadFile("testdata/" + table.data)
 		assert.NoError(err)
 

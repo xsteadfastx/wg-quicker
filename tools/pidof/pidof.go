@@ -40,7 +40,7 @@ func Pidof(name string, cdr Commander) (int, error) {
 	}
 
 	for _, l := range strings.Split(string(p), "\n") {
-		if strings.Contains(l, name) {
+		if strings.Contains(l, name) && !strings.Contains(l, "grep") {
 			// nolint:gocritic
 			rePID, err := regexp.Compile(`(\d+)\s.+`)
 			if err != nil {
