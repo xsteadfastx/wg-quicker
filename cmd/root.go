@@ -44,7 +44,7 @@ var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Print version informations",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("wg-quicker %s, commit %s, build on %s", version, commit, date) // nolint: forbidigo
+		fmt.Printf("wg-quicker %s, commit %s, build on %s\n", version, commit, date) // nolint: forbidigo
 	},
 }
 
