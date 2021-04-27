@@ -21,6 +21,7 @@ checkconfig() {
 }
 
 start() {
+        checkconfig || return 1
 	ebegin "Starting $description for $CONF"
 	/usr/local/bin/wg-quicker up "$CONF"
 	eend $? "Failed to start $description for $CONF"
