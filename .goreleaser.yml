@@ -117,7 +117,13 @@ builds:
         - make wireguard-go GOARCH={{.Arch}} GOARM=7
 
 archives:
-  - replacements:
+  - format: tar.gz
+    replacements:
+      darwin: macos
+
+  - format: binary
+    id: binary-archive
+    replacements:
       darwin: macos
 
 checksum:
