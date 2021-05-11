@@ -17,7 +17,7 @@ steps:
       - tags
 
   - name: lint
-    image: golangci/golangci-lint:latest
+    image: golangci/golangci-lint:v1.39.0
     commands:
       - make lint
     depends_on:
