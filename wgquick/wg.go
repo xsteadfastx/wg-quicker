@@ -247,7 +247,7 @@ func SyncWireguardDevice(cfg *Config, link netlink.Link, log logrus.FieldLogger)
 
 // SyncLink synces link state with the config.
 // It does not sync Wireguard settings, just makes sure the device is up and type wireguard.
-func SyncLink(cfg *Config, iface string, uspace bool, log logrus.FieldLogger) (netlink.Link, error) {
+func SyncLink(cfg *Config, iface string, uspace bool, log logrus.FieldLogger) (netlink.Link, error) { //nolint:ireturn
 	link, err := netlink.LinkByName(iface)
 	// nolint: nestif
 	if err != nil {
