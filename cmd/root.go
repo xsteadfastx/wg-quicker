@@ -1,4 +1,4 @@
-// nolint: gochecknoglobals, exhaustivestruct, gochecknoinits
+// nolint:gochecknoglobals,exhaustivestruct,gochecknoinits
 package cmd
 
 import (
@@ -102,7 +102,7 @@ var showCmd = &cobra.Command{
 	},
 }
 
-func loadConfig(cfg string) (*wgquick.Config, logrus.FieldLogger) {
+func loadConfig(cfg string) (*wgquick.Config, logrus.FieldLogger) { //nolint:ireturn
 	log := logrus.WithField("iface", iface)
 	_, err := os.Stat(cfg)
 

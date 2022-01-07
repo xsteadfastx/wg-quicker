@@ -38,11 +38,11 @@ builds:
       pre:
         - make wireguard-go GOARCH={{.Arch}}
 
-  - id: 386
+  - id: "386"
     env:
       - CGO_ENABLED=0
     goarch:
-      - 386
+      - "386"
     goos:
       - linux
     ldflags:
@@ -62,7 +62,7 @@ builds:
     goarch:
       - arm
     goarm:
-      - 5
+      - "5"
     goos:
       - linux
     ldflags:
@@ -82,7 +82,7 @@ builds:
     goarch:
       - arm
     goarm:
-      - 6
+      - "6"
     goos:
       - linux
     ldflags:
@@ -102,7 +102,7 @@ builds:
     goarch:
       - arm
     goarm:
-      - 7
+      - "7"
     goos:
       - linux
     ldflags:

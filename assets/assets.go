@@ -1,4 +1,4 @@
-// nolint:gochecknoglobals,golint,stylecheck
+// nolint:golint
 package assets
 
 import _ "embed"

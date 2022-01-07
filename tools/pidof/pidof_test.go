@@ -1,4 +1,4 @@
-// nolint:gochecknoglobals,paralleltest,goerr113,funlen
+// nolint:paralleltest,goerr113,funlen
 package pidof_test
 
 import (
