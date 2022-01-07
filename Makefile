@@ -10,6 +10,9 @@ else
 	GOARMLINE :=
 endif
 
+GORELEASER := $(GO) run github.com/goreleaser/goreleaser
+GOLANGCI_LINT := $(GO) run github.com/golangci/golangci-lint/cmd/golangci-lint
+
 all: clean wg-quicker
 
 .PHONY: clean
@@ -26,28 +29,40 @@ wireguard-go: clean
 
 .PHONY: generate
 generate:
-	go generate ./...
+	$(GO) generate ./...
 
 wg-quicker: wireguard-go
 	$(GO) build -v $(GOFLAGS) -o "$@" cmd/wg-quicker/main.go
 
 .PHONY: build
 build:
-	goreleaser build --rm-dist --snapshot --parallelism=1
+	$(GORELEASER) build --rm-dist --snapshot --parallelism=1
 
 .PHONY: release
 release:
-	goreleaser release --rm-dist --snapshot --parallelism=1
+	$(GORELEASER) release --rm-dist --snapshot --parallelism=1
 
 
 .PHONY: test
 test:
-	GOFLAGS=-mod=vendor go test -race -cover -v ./...
+	GOFLAGS=-mod=vendor $(GO) test -race -cover -v ./...
 
 .PHONY: lint
 lint:
-	golangci-lint run --enable-all --disable gomnd --disable godox --disable exhaustivestruct --timeout 5m
+	$(GOLANGCI_LINT) run \
+		--enable-all \
+		--disable gomnd \
+		--disable godox \
+		--disable exhaustivestruct \
+		--disable varnamelen \
+		--timeout 5m
+
+.PHONY: tidy
+tidy:
+	$(GO) mod tidy
+	$(GO) mod vendor
+
 
 .PHONY: install-tools
 install-tools:
-	@cat tools.go | grep _ | awk -F'"' '{print $$2}' | xargs -tI % go install -v %
+	$(GO) list -f '{{range .Imports}}{{.}} {{end}}' third_party/tools/tools.go | xargs go install -v
