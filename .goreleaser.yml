@@ -118,6 +118,7 @@ builds:
 
 archives:
   - format: tar.gz
+    id: tar.gz
     replacements:
       darwin: macos
 
@@ -175,7 +176,7 @@ nfpms:
 brews:
   - name: wg-quicker
     ids:
-      - amd64
+      - tar.gz
     tap:
       owner: xsteadfastx
       name: homebrew-tap
