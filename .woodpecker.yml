@@ -1,0 +1,34 @@
+pipeline:
+  tags:
+    image: alpine/git
+    commands:
+    - git fetch --tags
+  submodules:
+    image: alpine/git
+    commands:
+    - git submodule init
+    - git submodule update
+    when:
+      event:
+      - tag
+  lint:
+    image: golang:1.17
+    commands:
+    - make lint
+  test:
+    image: golang:1.17
+    commands:
+    - make test
+  build:
+    image: golang:1.17
+    commands:
+    - make build
+  release:
+    image: golang:1.17
+    commands:
+    - make release
+    secrets:
+    - github_token
+    when:
+      event:
+      - tag
