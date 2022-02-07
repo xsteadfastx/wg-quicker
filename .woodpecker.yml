@@ -26,6 +26,7 @@ pipeline:
   release:
     image: golang:1.17
     commands:
+    - git checkout -- .
     - make release
     secrets:
     - github_token
