@@ -10,8 +10,8 @@ else
 	GOARMLINE :=
 endif
 
-GORELEASER := $(GO) run github.com/goreleaser/goreleaser
-GOLANGCI_LINT := $(GO) run github.com/golangci/golangci-lint/cmd/golangci-lint
+GORELEASER := $(GO) run github.com/goreleaser/goreleaser@v1.3.1
+GOLANGCI_LINT := $(GO) run github.com/golangci/golangci-lint/cmd/golangci-lint@v1.44.0
 
 all: clean wg-quicker
 
@@ -40,7 +40,7 @@ build:
 
 .PHONY: release
 release:
-	$(GORELEASER) release --rm-dist --snapshot --parallelism=1
+	$(GORELEASER) release --rm-dist --parallelism=1
 
 
 .PHONY: test
@@ -61,8 +61,3 @@ lint:
 tidy:
 	$(GO) mod tidy
 	$(GO) mod vendor
-
-
-.PHONY: install-tools
-install-tools:
-	$(GO) list -f '{{range .Imports}}{{.}} {{end}}' third_party/tools/tools.go | xargs go install -v
