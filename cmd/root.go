@@ -144,7 +144,7 @@ func loadConfig(cfg string) (*wgquick.Config, logrus.FieldLogger) { //nolint:ire
 func init() {
 	cobra.OnInitialize(initConfig)
 
-	rootCmd.PersistentFlags().StringVar(&cfgDir, "config-dir", "", "config directory (default is /etc/wireguard)")
+	rootCmd.PersistentFlags().StringVarP(&cfgDir, "config-dir", "c", "", "config directory (default is /etc/wireguard)")
 	rootCmd.PersistentFlags().StringVarP(&iface, "iface", "i", "", "if interface name should differ from config")
 	rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "verbose")
 	rootCmd.PersistentFlags().IntVarP(&protocol, "route-protocol", "p", 0, "route protocol to use for our routes")
