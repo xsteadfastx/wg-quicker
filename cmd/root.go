@@ -163,7 +163,7 @@ func init() {
 }
 
 func initConfig() {
-	if cfgDir != "" {
+	if cfgDir == "" {
 		cfgDir = "/etc/wireguard"
 	}
 
